@@ -2,6 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 import Header from '../components/Header';
+import WalletForm from '../components/WalletForm';
 
 class Wallet extends React.Component {
   render() {
@@ -13,6 +14,7 @@ class Wallet extends React.Component {
           despesaTotal={ despesaTotal }
           cambio={ cambio }
         />
+        <WalletForm />
       </div>
     );
   }

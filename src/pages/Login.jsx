@@ -5,6 +5,8 @@ import { connect } from 'react-redux';
 import Input from '../components/Input';
 import Button from '../components/Button';
 import { submitLoginInfo } from '../redux/actions/index';
+import LogoTrybe from '../logo-trybe.png';
+import '../App.css';
 
 class Login extends React.Component {
   constructor() {
@@ -26,10 +28,17 @@ class Login extends React.Component {
   render() {
     const passwordMinLength = 6;
     const { email, password } = this.state;
-    const { history, dispatch } = this.props;
+    const { history, dispatch, className, moreClasses } = this.props;
     return (
-      <div>
+      <div
+        className="login-form-container"
+      >
         <h1>Login</h1>
+        <img
+          className="wallet-login-img"
+          src={ LogoTrybe }
+          alt="logo-trybe"
+        />
         <form
           onSubmit={ (e) => {
             e.preventDefault();
@@ -39,6 +48,7 @@ class Login extends React.Component {
           } }
         >
           <Input
+            className={ className }
             type="text"
             name="email"
             label="Email: "
@@ -48,6 +58,7 @@ class Login extends React.Component {
             required
           />
           <Input
+            className={ className }
             type="text"
             name="password"
             label="Senha:  "
@@ -59,7 +70,7 @@ class Login extends React.Component {
           <Button
             type="submit"
             label="Entrar"
-            moreClasses="is-fullwidth is-info"
+            moreClasses={ moreClasses }
             disabled={ !email
               .match(/\S+@\S+\.\S+/) || password.length < passwordMinLength }
           />
@@ -74,6 +85,13 @@ Login.propTypes = {
     push: PropTypes.func,
   }).isRequired,
   dispatch: PropTypes.func.isRequired,
+  className: PropTypes.string,
+  moreClasses: PropTypes.string,
+};
+
+Login.defaultProps = {
+  className: 'login',
+  moreClasses: 'login',
 };
 
 export default connect(null)(Login);

@@ -40,28 +40,84 @@
   }
 }
 
-.wallet-Header {
+.login-form-container {
+  align-items: center;
+  border-radius: 12px;
+  box-shadow: 3px 3px rgb(46, 203, 46), -1em 0 0.4em rgb(46, 203, 46);
+  color: beige;
   display: flex;
-  flex-flow: row nowrap;
+  flex-flow: column nowrap;
+  font-weight: 900;
+  height: 290px;
   justify-content: space-between;
   margin: 5px;
-  margin-right: 25px;
+  margin-left: 650px;
+  margin-top: 150px;
+  padding: 25px;
+  text-shadow: -1px 0 rgb(53, 103, 18),
+    0 1px rgb(36, 103, 10), 1px 0 rgb(30, 104, 11), 0 -1px rgb(30, 91, 14);
+  width: 260px;
+}
+
+.input-login {
+  border-radius: 6px;
+  height: 30px;
+  margin-bottom: 10px;
+  width: 230px;
+}
+
+.button-login {
+  align-content: center;
+  background-color: rgb(51, 160, 51);
+  border-radius: 5px;
+  color: beige;
+  display: flex;
+  flex-flow: row wrap;
+  font-weight: 800;
+  height: 30px;
+  justify-content: center;
+  width: 75px;
+}
+
+.wallet-Header {
+  align-content: center;
+  background-color: rgb(16, 93, 16);
+  display: flex;
+  flex-flow: row nowrap;
+  height: 90px;
+  justify-content: space-between;
 }
 
 .wallet-header-img {
   align-self: flex-start;
   display: flex;
-  height: 52px;
+  height: 50px;
   justify-self: flex-start;
-  padding: 15px;
-  width: 150px;
+  margin-left: 15px;
+  margin-top: 15px;
+  width: 200px;
+}
+
+.wallet-login-img {
+  align-self: flex-start;
+  display: flex;
+  height: 75px;
+  justify-self: flex-start;
+  margin-bottom: 20px;
+  margin-left: 27px;
+  width: 200px;
 }
 
 .header-container {
   align-self: flex-end;
+  color: beige;
   display: flex;
   flex-flow: row nowrap;
+  font-weight: 200;
   justify-content: space-between;
   justify-self: flex-end;
+  margin-right: 20px;
+  text-shadow: -1px 0 rgb(53, 103, 18),
+    0 1px rgb(36, 103, 10), 1px 0 rgb(30, 104, 11), 0 -1px rgb(30, 91, 14);
   width: 550px;
 }
