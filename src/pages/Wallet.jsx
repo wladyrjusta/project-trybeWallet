@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 
 import Header from '../components/Header';
 import WalletForm from '../components/WalletForm';
+import ExpensesTable from '../components/ExpensesTable';
 
 class Wallet extends React.Component {
   render() {
@@ -14,7 +15,13 @@ class Wallet extends React.Component {
           despesaTotal={ despesaTotal }
           cambio={ cambio }
         />
+        <br />
+        <br />
         <WalletForm />
+        <br />
+        <br />
+        <br />
+        <ExpensesTable />
       </div>
     );
   }
