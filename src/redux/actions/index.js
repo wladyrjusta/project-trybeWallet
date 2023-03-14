@@ -1,5 +1,6 @@
 const LOGIN_ACESS = 'LOGIN_ACESS';
 const GET_CURRENCIES = 'GET_CURRENCIES';
+const SUBMIT_WALLET_INFOS = 'SUBMIT_WALLET_INFOS';
 
 const submitLoginInfo = (email) => ({
   type: LOGIN_ACESS,
@@ -11,6 +12,19 @@ const getCurrencies = (code) => ({
   payload: code,
 });
 
+const submitWalletInfo = (expenses) => ({
+  type: SUBMIT_WALLET_INFOS,
+  payload: { expenses },
+});
+
+function fetchWalletExchangeRates(expenses) {
+  return async (dispatch) => {
+    const response = await fetch('https://economia.awesomeapi.com.br/json/all');
+    const exchangeRates = await response.json();
+    dispatch(submitWalletInfo({ ...expenses, exchangeRates }));
+  };
+}
+
 function fetchCurrencies() {
   return (dispatch) => {
     fetch('https://economia.awesomeapi.com.br/json/all')
@@ -19,4 +33,13 @@ function fetchCurrencies() {
         .filter((currence) => currence !== 'USDT'))));
   };
 }
-export { LOGIN_ACESS, submitLoginInfo, GET_CURRENCIES, getCurrencies, fetchCurrencies };
+
+export { LOGIN_ACESS,
+  GET_CURRENCIES,
+  SUBMIT_WALLET_INFOS,
+  submitLoginInfo,
+  getCurrencies,
+  fetchCurrencies,
+  fetchWalletExchangeRates,
+  submitWalletInfo,
+};

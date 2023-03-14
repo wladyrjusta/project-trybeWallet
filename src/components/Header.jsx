@@ -6,8 +6,22 @@ import LogoTrybe from '../logo-trybe.png';
 import '../App.css';
 
 class Header extends Component {
+  state = {
+    currency: 'BRL',
+  };
+
   render() {
-    const { email, despesaTotal, cambio } = this.props;
+    const { currency } = this.state;
+    const { email, expenses } = this.props;
+
+    const totalSumExpenses = expenses
+      .reduce((acc, currValue) => {
+        acc += (Number(currValue.value)
+          * Number(currValue.exchangeRates[currValue.currency].ask));
+
+        return acc;
+      }, 0);
+
     return (
       <div
         className="wallet-Header"
@@ -25,15 +39,16 @@ class Header extends Component {
           >
             {`Email:  ${email}`}
           </h3>
-          <h3
+          <h3>Despesa Total: R$</h3>
+          <h4
             data-testid="total-field"
           >
-            {`Despesa Total: R$ ${despesaTotal}`}
-          </h3>
+            { totalSumExpenses.toFixed(2) }
+          </h4>
           <h3
             data-testid="header-currency-field"
           >
-            {cambio}
+            {currency}
           </h3>
         </div>
       </div>
@@ -47,15 +62,15 @@ const mapStateToProps = (state) => ({
 });
 
 Header.propTypes = {
-  email: PropTypes.string,
-  despesaTotal: PropTypes.string,
-  cambio: PropTypes.string,
-};
-
-Header.defaultProps = {
-  email: '',
-  despesaTotal: '0,00',
-  cambio: 'BRL',
+  email: PropTypes.string.isRequired,
+  expenses: PropTypes.arrayOf(PropTypes.shape({
+    id: PropTypes.number,
+    value: PropTypes.string,
+    description: PropTypes.string,
+    currency: PropTypes.string,
+    method: PropTypes.string,
+    tag: PropTypes.string,
+  })).isRequired,
 };
 
 export default connect(mapStateToProps)(Header);
