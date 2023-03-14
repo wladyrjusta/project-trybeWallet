@@ -88,6 +88,7 @@ class WalletForm extends Component {
             </select>
           </label>
           <label htmlFor="method">
+            Metodo de pagamento
             <select
               data-testid="method-input"
               value={ method }

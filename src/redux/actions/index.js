@@ -17,20 +17,20 @@ const submitWalletInfo = (expenses) => ({
   payload: { expenses },
 });
 
-function fetchWalletExchangeRates(expenses) {
-  return async (dispatch) => {
-    const response = await fetch('https://economia.awesomeapi.com.br/json/all');
-    const exchangeRates = await response.json();
-    dispatch(submitWalletInfo({ ...expenses, exchangeRates }));
-  };
-}
-
 function fetchCurrencies() {
   return (dispatch) => {
     fetch('https://economia.awesomeapi.com.br/json/all')
       .then((responde) => responde.json())
       .then((data) => dispatch(getCurrencies(Object.keys(data)
         .filter((currence) => currence !== 'USDT'))));
+  };
+}
+
+function fetchWalletExchangeRates(expenses) {
+  return async (dispatch) => {
+    const response = await fetch('https://economia.awesomeapi.com.br/json/all');
+    const exchangeRates = await response.json();
+    dispatch(submitWalletInfo({ ...expenses, exchangeRates }));
   };
 }
 
