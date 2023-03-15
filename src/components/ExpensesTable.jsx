@@ -2,9 +2,11 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 
+import { updateExpenseGlobalState } from '../redux/actions';
+
 class ExpensesTable extends Component {
   render() {
-    const { expenses } = this.props;
+    const { expenses, dispatch } = this.props;
     return (
       <div>
         <table>
@@ -40,7 +42,18 @@ class ExpensesTable extends Component {
                   }
                 </td>
                 <td>Real</td>
-                <td>X</td>
+                <td>
+                  <button
+                    data-testid="delete-btn"
+                    id={ expense.id }
+                    onClick={
+                      () => dispatch(updateExpenseGlobalState(expenses, expense.id))
+                    }
+                    type="button"
+                  >
+                    X
+                  </button>
+                </td>
               </tr>)) }
           </tbody>
         </table>
@@ -63,6 +76,7 @@ ExpensesTable.propTypes = {
     method: PropTypes.string,
     tag: PropTypes.string,
   })).isRequired,
+  dispatch: PropTypes.func.isRequired,
 };
 
 export default connect(mapStateToProps)(ExpensesTable);

@@ -1,5 +1,5 @@
 import { GET_CURRENCIES,
-  SUBMIT_WALLET_INFOS } from '../actions';
+  SUBMIT_WALLET_INFOS, UPDATE_WALLET_INFOS } from '../actions';
 
 const INITIAL_STATE = {
   currencies: [],
@@ -19,6 +19,11 @@ const wallet = (state = INITIAL_STATE, action) => {
     return {
       ...state,
       expenses: [...state.expenses, action.payload.expenses],
+    };
+  case UPDATE_WALLET_INFOS:
+    return {
+      ...state,
+      expenses: [...action.payload.expenses],
     };
 
   default:

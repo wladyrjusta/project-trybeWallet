@@ -1,6 +1,7 @@
 const LOGIN_ACESS = 'LOGIN_ACESS';
 const GET_CURRENCIES = 'GET_CURRENCIES';
 const SUBMIT_WALLET_INFOS = 'SUBMIT_WALLET_INFOS';
+const UPDATE_WALLET_INFOS = 'UPDATE_WALLET_INFOS';
 
 const submitLoginInfo = (email) => ({
   type: LOGIN_ACESS,
@@ -14,6 +15,11 @@ const getCurrencies = (code) => ({
 
 const submitWalletInfo = (expenses) => ({
   type: SUBMIT_WALLET_INFOS,
+  payload: { expenses },
+});
+
+const updateWalletInfo = (expenses) => ({
+  type: UPDATE_WALLET_INFOS,
   payload: { expenses },
 });
 
@@ -34,12 +40,23 @@ function fetchWalletExchangeRates(expenses) {
   };
 }
 
+function updateExpenseGlobalState(expenses, id) {
+  return (dispatch) => {
+    const filteredExpenses = expenses
+      .filter((_expense, index) => (expenses[index].id !== id));
+    dispatch(updateWalletInfo(filteredExpenses));
+  };
+}
+
 export { LOGIN_ACESS,
   GET_CURRENCIES,
   SUBMIT_WALLET_INFOS,
+  UPDATE_WALLET_INFOS,
+  updateWalletInfo,
   submitLoginInfo,
   getCurrencies,
   fetchCurrencies,
   fetchWalletExchangeRates,
   submitWalletInfo,
+  updateExpenseGlobalState,
 };
